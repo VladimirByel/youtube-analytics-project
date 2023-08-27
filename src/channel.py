@@ -48,3 +48,27 @@ class Channel:
             file.write(jsoned_dict)
             #json.dumps(json_to_be, file, indent=2, ensure_ascii=False)
 
+    def __str__(self):
+        return f"""{self.title}({self.url})"""
+
+    def __add__(self, other):
+        return int(self.number_of_subscribers) + int(other.number_of_subscribers)
+
+    def __sub__(self, other):
+        return int(self.number_of_subscribers) - int(other.number_of_subscribers)
+
+    def __gt__(self, other):
+        return int(self.number_of_subscribers) > int(other.number_of_subscribers)
+
+    def __ge__(self, other):
+        return int(self.number_of_subscribers) >= int(other.number_of_subscribers)
+
+    def __lt__(self, other):
+        return int(self.number_of_subscribers) < int(other.number_of_subscribers)
+
+    def __le__(self, other):
+        return int(self.number_of_subscribers) <= int(other.number_of_subscribers)
+
+    def __eq__(self, other):
+        return int(self.number_of_subscribers) == int(other.number_of_subscribers)
+
