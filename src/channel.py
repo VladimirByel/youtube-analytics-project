@@ -45,8 +45,7 @@ class Channel:
         txt = str(json_to_be)
         jsoned_dict = json.dumps(txt)
         with open(name, 'a') as file:
-            file.write(jsoned_dict)
-            #json.dumps(json_to_be, file, indent=2, ensure_ascii=False)
+            json.dump(json_to_be, file, indent=2, ensure_ascii=False)
 
     def __str__(self):
         return f"""{self.title}({self.url})"""
