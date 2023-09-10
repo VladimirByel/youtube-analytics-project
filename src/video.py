@@ -19,13 +19,21 @@ class Video:
             maxResults=50
         )
         video_response = self.request.execute()
-        self.video_title: str = video_response['items'][0]['snippet']['title']
-        self.view_count: int = video_response['items'][0]['statistics']['viewCount']
-        self.like_count: int = video_response['items'][0]['statistics']['likeCount']
-        self.comment_count: int = video_response['items'][0]['statistics']['commentCount']
+        try:
+            self.video_title: str = video_response['items'][0]['snippet']['title']
+        except IndexError:
+            self.video_title = None
+            self.comment_count = None
+            self.like_count = None
+            self.view_count = None
+        else:
+            self.video_title: str = video_response['items'][0]['snippet']['title']
+            self.view_count: int = video_response['items'][0]['statistics']['viewCount']
+            self.like_count: int = video_response['items'][0]['statistics']['likeCount']
+            self.comment_count: int = video_response['items'][0]['statistics']['commentCount']
 
     def __str__(self):
-        return self.video_title
+        return f'{self.video_title}'
 
 
 class PLVideo(Video):
